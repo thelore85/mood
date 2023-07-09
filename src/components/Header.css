@@ -6,6 +6,7 @@ h1{
     font-size: 105px;
     letter-spacing: 40px;
     line-height: 90px;
+    text-transform: uppercase;
     
     
     color:#5319ff;
@@ -17,6 +18,60 @@ h1{
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
 }
+
+
+
+/* FIX HEADER HEDROOM */
+
+.headroom {
+    top: 0;
+    left: 0;
+    right: 0;
+    zIndex: 1;
+  }
+  .headroom--unfixed {
+    position: relative;
+    transform: translateY(0);
+  }
+  .headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+  }
+  .headroom--unpinned {
+    position: fixed;
+    transform: translateY(-100%);
+  }
+  .headroom--pinned {
+    position: fixed;
+    transform: translateY(0%);
+
+    background-color:aliceblue;
+  }
+
+
+ /* H1 CSS */
+
+
+  .headroom--unpinned h1{
+    text-align: left;
+    margin: 15px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 4px;
+  }
+  .headroom--pinned h1{
+ 
+  }
+
+
+  .headroom--pinned h1{
+    text-align: left;
+    margin: 15px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 4px;
+  }
+
+/* //////////////////// */
 
 
 /* large smart-phone */

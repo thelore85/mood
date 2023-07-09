@@ -33,14 +33,14 @@ class App extends Component{
 
 // FETCHING IMG
 getImagesFromApi(){
-	// temporaryArray = temporaryArray.concat(imageDb)
-	// this.setState({
-	// 	imgArray: temporaryArray,
-	// })
+	temporaryArray = temporaryArray.concat(imageDb)
+	this.setState({
+		imgArray: temporaryArray,
+	})
 
-	fetch(`https://api.unsplash.com/photos/random?client_id=${accessKey}&count=${count}`)
-	.then(response => { return response.json()})
-	.then(images => {	temporaryArray = temporaryArray.concat(images); this.setState({ imgArray: temporaryArray,})})
+	// fetch(`https://api.unsplash.com/photos/random?client_id=${accessKey}&count=${count}`)
+	// .then(response => { return response.json()})
+	// .then(images => {	temporaryArray = temporaryArray.concat(images); this.setState({ imgArray: temporaryArray,})})
 
 }
 

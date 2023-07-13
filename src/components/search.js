@@ -6,25 +6,13 @@ import './ImageList.css';
 const ImageList = ({ imgArray, onImgLoad }) =>{
 
 	let imgElementsArr
-	let counter = imgArray.length;	
-	if(counter > 1){
+	
+	if(imgArray.length>0){
 		imgElementsArr = imgArray.map((el, i )=>{
-			return (
-				<Image
-					key={el+i}
-					src={imgArray[i].urls.small}
-					onImgLoad={onImgLoad}
-				/> 
-			)
-		})
-	}
-
-	if(counter < 1){
-		imgElementsArr = imgArray.map((el, i )=>{
-			return (
+			return (	
 				<Image 
-					key={el+i}
-					src={imgArray[i].urls.thumb}
+					key={i+el}
+					src={imgArray[i+imgArray.lenght-1].urls.small}
 					onImgLoad={onImgLoad}
 				/> 
 			)
@@ -32,7 +20,7 @@ const ImageList = ({ imgArray, onImgLoad }) =>{
 	}
 	
 	return(
-	<div className="image-list">
+		<div className="image-list">
 		{imgElementsArr}
 	</div>
 	)

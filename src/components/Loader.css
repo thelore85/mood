@@ -1,4 +1,5 @@
 .loader{
+    z-index: 10;
     position:fixed;
     top:0;
     bottom:0;
@@ -8,6 +9,7 @@
 }
 
 .loader img{
+    z-index: 10;
     position: fixed;
     top: 50%;
     left:50%;

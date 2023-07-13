@@ -1,12 +1,11 @@
 
-.header{
+/* .header-bk{
   display: block ;
   text-align: center;
   padding: 35px;
-
+  
   background-color: white;
-
-
+  
   padding-top:120px;
   border-radius: 100%;
   height: 450px;
@@ -14,21 +13,42 @@
   position:relative;
   right:25%;
   top:-85px;
+} */
 
+
+
+
+/* COMPONENT WRAPPER */
+.header-wrapper{
+  display:block ;
+  text-align: center;
+  max-width: 1000px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom:60px;
 }
 
-.header h1{
-  margin:25px; 
 
-  font-size: 65px;
-  line-height:65px;
-  text-transform: capitalize;
-  text-align: center;
+/* LOGO */
+.header-logo-wrapper{
+  display:inline-block;
+  float:none;
+  margin:60px;
+  margin-bottom: 25px;
+}
+
+.header-logo-text, .header-logo-icon{
+  margin:0px; 
+  font-size: 55px;
+  line-height:45px;
+  font-weight: 900;
   font-weight: 900;
 
+  text-transform: capitalize;
+  /* text-align:center; */
   color:#5319ff;
-  background-color: #fecc41;
-  background-image: linear-gradient(45deg, #26e7a4, #8019b7);
+
+  background-image: linear-gradient(45deg, #5dffef, #7819b7);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -36,25 +56,115 @@
   -moz-text-fill-color: transparent;
 }
 
-header h1 .mobile {
-  visibility:hide;
+.header-logo-text{
+  display:inline-block;
+  margin-left:15px;
+  vertical-align: middle;
+  text-align: left;
 
 }
 
-.header-button{
+.header-logo-icon{
   display: inline-block;
-  margin: auto;
-  text-align: center;
-  font-size: 15px;
+  margin:0;
+  vertical-align: middle;
+  font-size:65px;
+  line-height: 65px;
+}
 
+/* ACCOUNT MENU  */
+.header-menu-wrapper{
+  display:block;
+  float: right;
+  margin-left:-100px;
+}
+
+.header-menu-wrapper button{
+  margin:0;
+}
+
+.header-menu-button{
   border: none;
+  border-radius: 100%;
+  height: 40px;
+  width:40px;
+  rotate:90deg;
+  color: gray;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.header-account-button{
+  border: none;
+  border-radius: 100%;
+  height: 40px;
+  width:40px;
+  color: gray;
+  background-color: white;
+}
+
+
+/* SEARCH */
+
+.header-search-wrapper{
+  display: block;
+  width:100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.header-search-input{
+  width: 100%;
+  max-width: 80%;
+  height:40px;
+  border-radius: 20px 0px 0px 20px ;
+  padding: 0 20px;
+  border: solid 1px rgb(214, 214, 214);
+}
+
+
+.header-search-button {
+  z-index: 1;
+  max-width: 20%;
+  position: relative;
+  height:40px;
+  margin: auto;
+  padding: 0px 15px;
+  font-size: 15px;
+  color: white;
+  border: none;
+  border-radius: 0px 20px 20px 0 ;
   background-image: linear-gradient(45deg, #4dedff, #1678f7);
 }
 
+/* gradient animation */
+.header-search-button::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(45deg, #e74dff, #ddf716);
+  z-index: -1;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+  border-radius: 0px 20px 20px 0 ;
+}
+
+.header-search-button:hover::before {
+  opacity: 1;
+}
+.header-search-button:active {
+  box-shadow: 0px 4px #b3b3b3;
+}
 
 
-/* FIX HEADER HEDROOM */
-.headroom {
+/* //////////////////////////////// */
+/* MENU SETTING */
+/* //////////////////////////////// */
+
+/* Main setting */
+/* .headroom {
     top: 0;
     left: 0;
     right: 0;
@@ -65,100 +175,40 @@ header h1 .mobile {
     transform: translateY(0);
   }
   .headroom--scrolled {
-    transition: transform 200ms ease-in-out;
-    
-  }
+    transition: transform 100ms ease-in-out;
+    } */
+
   .headroom--unpinned {
     position: fixed;
     transform: translateY(-100%);
+    background-color: white;
+    transition: transform 100ms ease-in-out;
   }
   .headroom--pinned {
     position: fixed;
     transform: translateY(0%);
 
-    background-color:aliceblue;
+    background-color: white;
+    transition: transform 100ms ease-in-out;
   }
 
-
-
- /* MENU H1 CSS */
-  .headroom--unpinned h1{
-    text-align: left;
-    margin: 15px;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: 4px;
-  }
-
-  .headroom--pinned h1{
-    text-align: left;
-    margin: 15px;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: 4px;
-  }
-/* //////////////////// */
-
-  
- /* MENU .HEADER CSS */
- .headroom--unpinned .header{
-  display: flex;
-  padding:10px;
-  border-radius: 0%;
-  height: 100px;
-  width: 100%;
-  position:relative;
-  right:0;
-  top:0;
+/* Menu personalization */
+.headroom--unpinned .header-logo-wrapper, .headroom--pinned .header-logo-wrapper{
+  float: left;
+  margin: 0px;
 }
 
-.headroom--pinned .header{
-  display: flex;
-  padding:10px;
-  border-radius: 0%;
-  height: 100px;
-  width: 100%;
-  position:relative;
-  right:0;
-  top:0;
+.headroom--unpinned .header-search-input, .headroom--pinned .header-search-input{
+  margin: 0px;
 }
-/* //////////////////// */
-
- /* MENU BUTTON */
- .headroom--unpinned .header-button{
-  position: relative;
-  left:-60px;
-  margin: auto;
-  text-align: right;
-  font-size: 11px;
-}
-
-.headroom--pinned .header-button{
-  position: relative;
-  left:-60px;
-  margin: auto;
-  text-align: right;
-  font-size: 11px;
-}
-/* //////////////////// */
-
-
-
 
 /* large smart-phone */
-@media screen and (max-width: 850px ){
-    h1 .mobile {
-      visibility:visible;
-    }
-
- /* MENU H1 CSS */
- .headroom--unpinned h1{
-visibility: hidden;
+@media screen and (max-width: 650px ){    
+  .header-search-wrapper {
+    padding:0px;
+  }
+  .button-text{
+   display:none;
+  }
 }
 
-.headroom--pinned h1{
-visibility: hidden;
-}
-/* //////////////////// */
-    
-}

@@ -3,9 +3,9 @@ import './Image.css';
 
 const Image = ({ src, onImgLoad }) => {
 	return(
-		<figure>
-		<img className="image-item" src={src} onLoad={onImgLoad}/>
-		</figure>
+	<div>
+		<img className="image-item test" src={src} onLoad={onImgLoad}/>
+	</div>
 	)
 }
 

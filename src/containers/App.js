@@ -2,7 +2,7 @@
 // IMOPRT AND VARIABLES
 
 import React, { Component } from 'react';
-import { imageDb } from '../Db.js'
+import { imageDb } from '../Db.js';
 
 import Header from '../components/Header.js'
 import ImageList from '../components/ImageList.js';
@@ -11,36 +11,44 @@ import './App.css';
 
 //COMPONENT VARIABLES
 let loadingCounter = 0;
-let count = 10;
+let count = 30;
+let page = 1;
+let userQueryInput = 'madrid';
 let accessKey = 'UB47zzyZZUCV5oltzO136BivI1u1oOQiO96YF7UeB7U';
-let temporaryArray = [];
+let imgAggregator = []; //img aggregator: store all the img downloaded ==> pass it to the state "searchQuery"
 
 
 //////////////////////////////////////////
 //COMPONTENTS START
-///////////////////////////////////////////
+//////////////////////////////////////////
 
 class App extends Component{
 	
-	// STATE setup
-	constructor(){
-		super()
-		this.state = {
-			imgArray:[],
-			render: false,
-		}
-	};
+// STATE setup
+constructor(){
+	super()
+	this.state = {
+		imgArray:[], //
+		render: false,
+	}
+};
 
 // FETCHING IMG
 getImagesFromApi(){
-	temporaryArray = temporaryArray.concat(imageDb)
-	this.setState({
-		imgArray: temporaryArray,
-	})
+	// imgAggregator = imgAggregator.concat(imageDb)
+	// this.setState({
+	// 	imgArray: imgAggregator,
+	// })
 
-	// fetch(`https://api.unsplash.com/photos/random?client_id=${accessKey}&count=${count}`)
-	// .then(response => { return response.json()})
-	// .then(images => {	temporaryArray = temporaryArray.concat(images); this.setState({ imgArray: temporaryArray,})})
+	// SEARCH QUERY URL
+	fetch(`https://api.unsplash.com/search/photos?query=${userQueryInput}&client_id=${accessKey}&page=${page}&per_page=${count}`)
+	.then(response => { return response.json()})
+	.then(images => {imgAggregator = imgAggregator.concat(images.results); this.setState({ imgArray: imgAggregator,})});
+
+	// console.log('page', page);
+	// console.log('aggr img', imgAggregator);
+	// console.log('state img', this.state.imgArray);
+
 
 }
 
@@ -48,12 +56,12 @@ getImagesFromApi(){
 handleScroll = () => {
 
 let sum = window.innerHeight + window.scrollY ;
-let body = document.body.offsetHeight -10;
+let body = document.body.offsetHeight-100;
 
 if(sum >= body){
-	this.setState({	render: false	});
-	this.getImagesFromApi();
-};
+		page++;
+		this.getImagesFromApi();
+	};
 }
 
 // HIDE/SHOW LOADING ANIMATION
@@ -69,19 +77,47 @@ if(loadingCounter >= count){
 	}
 }
 
+// SEARCH QUERY MANAGEMENT
+onInputChange = (data) =>{
+	userQueryInput = data.target.value;
+	return{
+		userQueryInput
+	}
+}
+
+onCLickRunQuery = () => {
+	if(userQueryInput !== ""){
+		imgAggregator = [];
+		page = 1;
+		window.scrollTo(0,0);
+		this.getImagesFromApi();
+	}
+
+}
+
+onInputHitEnter = (data) => {
+	if(data.keyCode === 13 && data.target.value !== ""){
+		imgAggregator = [];
+		page = 1;
+		window.scrollTo(0,0);
+		this.getImagesFromApi();
+	}
+
+}
+
 //COMPOPNENT DID MOUNT
 componentDidMount(){
-	this.getImagesFromApi()
+	this.getImagesFromApi();
 	window.addEventListener('scroll', this.handleScroll);
+	userQueryInput = ''; //reset query after first loada (defaul query set in variable)
 }
 
 // RENDER THE COMPONENTS and pass parameters
 render(){
-
 		return(		
 			<div className="app-container" >
-				<Header />
 				<Loader  renderStatus={this.state.render}/>
+				<Header onInputChange={this.onInputChange} onCLickRunQuery={this.onCLickRunQuery} onInputHitEnter={this.onInputHitEnter} />
 				<ImageList renderStatus={this.state.render} onImgLoad={this.onImgLoad} imgArray={this.state.imgArray}/>
 			</div>
 		)

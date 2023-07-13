@@ -1,25 +1,13 @@
 /* MESONRY DISPLAY */
 
 .image-list img{
-    display: block;
-    padding: 5px;
-    width: 100%;
-    border-radius: 25px;
-    box-shadow: 4px 4px 6px rgba(91, 91, 91, 0.3);
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+	display: inline-block;
+  border-radius: 20px;
+  box-shadow: 4px 4px 6px rgba(91, 91, 91, 0.3);
 }
-
-.image-list figure {
-margin: 0px;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  margin-bottom: 10px;
-  break-inside: avoid;
-  }
-  
-  .image-list figure > img {
-    grid-row: 1 / -1;
-    grid-column: 1;
-  }
 
 
 /* CLASSIC DISPLAY */

@@ -2,63 +2,66 @@ import React from 'react';
 import Headroom from 'react-headroom'
 
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas'; // sidebar menu
-import Form from 'react-bootstrap/Form';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Header.css';
 
-const Header = () =>{
+const Header = ({ onInputChange, onCLickRunQuery, onInputHitEnter }) =>{
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
 	return(
+		<section className="header">
 		<Headroom>
-			<section className="header">
-				<h1 className="header-title">Storm <br />Brainer</h1>
-				<p className="header-caption"></p>
-				<Button className="header-button" variant="primary" onClick={handleShow}>
-					Your creativity start here
-				</Button>
+				
+				<div className="header-wrapper">
 
-				<Offcanvas show={show} onHide={handleClose}>
-					<Offcanvas.Header closeButton>
-						<Offcanvas.Title>Filters</Offcanvas.Title>
-					</Offcanvas.Header>
-					<Offcanvas.Body>
-						<p>
-						Some text as placeholder. In real life you can have the elements you
-						have chosen. Like, text, images, lists, etc.<br/><br/>
-						</p>
-						<Form>
-						<Form.Select size="sm">
-							<option>Size</option>
-						</Form.Select>
-						<br />
-						<Form.Select size="sm">
-							<option>Select</option>
-						</Form.Select>
-						<br />
-						<Form.Select size="sm">
-							<option>Small select</option>
-						</Form.Select>
-						<br />
-						<Form.Control type="email" placeholder="Enter email" />
-						<br />
-						<Form.Control type="password" placeholder="Password" />
-						<br />
-						<input type="color" />
+					{/* header and logo */}
+					<div className="header-menu-wrapper">
+						<button className="header-menu-button menu" variant="primary" onClick={handleShow}>|||</button>
+						<button className="header-account-button account" variant="primary" onClick={handleShow}><i className="fa fa-user" aria-hidden="true"></i></button>
+					</div>
+				
+
+					<div className="header-logo-wrapper">
+						<i className="fa-solid fa-brain header-logo-icon"></i>
+						<h1 className="header-logo-text">Storm <br/>Brainer</h1>
+					</div>
+
+					<div className="header-search-wrapper">
+						<input className="header-search-input" type="text" placeholder="your creativity start here" onChange={onInputChange} onKeyUp={onInputHitEnter}/>
+						<button className="header-search-button" variant="primary" onClick={onCLickRunQuery}>
+							<i className="fas fa-search"></i>
+							<span className="button-text">search</span>
+						</button>
+					</div>
+
+					{/* account menu */}
+					<Offcanvas show={show} onHide={handleClose}>
+						<Offcanvas.Header closeButton>
+							<Offcanvas.Title>Create Your MoodBoard</Offcanvas.Title>
+						</Offcanvas.Header>
+						<Offcanvas.Body>
+							<p>
+							Use the filter set below to search the images for your moodboard.
+							Chose the one you like and save the collection in your personal Board<br/>
+							</p>
+
+
+							<input id="save-filter" className="input button header-button" type="button" value="Create your MoodBoard" />
+
+							
+						</Offcanvas.Body>
+					</Offcanvas>
+
+				</div>
 	
 
-						</Form>
-						
-					</Offcanvas.Body>
-				</Offcanvas>
-			</section>
 		</Headroom>
+		</section>
 	)
 }
 

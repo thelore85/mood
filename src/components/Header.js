@@ -1,8 +1,10 @@
 import React from 'react';
-import Headroom from 'react-headroom'
 
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas'; // sidebar menu
+
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Header.css';
@@ -15,7 +17,6 @@ const Header = ({ onInputChange, onCLickRunQuery, onInputHitEnter }) =>{
 
 	return(
 		<section className="header">
-		<Headroom>
 				
 				<div className="header-wrapper">
 
@@ -28,7 +29,10 @@ const Header = ({ onInputChange, onCLickRunQuery, onInputHitEnter }) =>{
 
 					<div className="header-logo-wrapper">
 						<i className="fa-solid fa-brain header-logo-icon"></i>
-						<h1 className="header-logo-text">Storm <br/>Brainer</h1>
+						<div className="text-wrapper">
+						<h1 className="header-logo-text"><span className="logo-up-line">mood.io</span></h1>
+						<h2>free to use images for free creativity</h2>
+						</div>
 					</div>
 
 					<div className="header-search-wrapper">
@@ -50,17 +54,13 @@ const Header = ({ onInputChange, onCLickRunQuery, onInputHitEnter }) =>{
 							Chose the one you like and save the collection in your personal Board<br/>
 							</p>
 
-
 							<input id="save-filter" className="input button header-button" type="button" value="Create your MoodBoard" />
-
 							
 						</Offcanvas.Body>
 					</Offcanvas>
 
 				</div>
-	
 
-		</Headroom>
 		</section>
 	)
 }

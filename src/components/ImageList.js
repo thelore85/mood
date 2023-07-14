@@ -3,29 +3,18 @@ import Image from './Image';
 
 import './ImageList.css';
 
-const ImageList = ({ imgArray, onImgLoad }) =>{
+const ImageList = ({ imgArray, onImgLoad, maximizeImage }) =>{
 
 	let imgElementsArr
 	let counter = imgArray.length;	
-	if(counter > 1){
+	if(counter > 0){
 		imgElementsArr = imgArray.map((el, i )=>{
 			return (
 				<Image
 					key={el+i}
-					src={imgArray[i].urls.small}
+					src={imgArray[i].urls}
 					onImgLoad={onImgLoad}
-				/> 
-			)
-		})
-	}
-
-	if(counter < 1){
-		imgElementsArr = imgArray.map((el, i )=>{
-			return (
-				<Image 
-					key={el+i}
-					src={imgArray[i].urls.thumb}
-					onImgLoad={onImgLoad}
+					maximizeImage={maximizeImage}
 				/> 
 			)
 		})

@@ -11,12 +11,12 @@ import './App.css';
 
 //COMPONENT VARIABLES
 let loadingCounter = 0;
-let count = 30;
+let count = 12;
 let page = 1;
 let userQueryInput = 'madrid';
 let accessKey = 'UB47zzyZZUCV5oltzO136BivI1u1oOQiO96YF7UeB7U';
 let imgAggregator = []; //img aggregator: store all the img downloaded ==> pass it to the state "searchQuery"
-
+let myModal;
 
 //////////////////////////////////////////
 //COMPONTENTS START
@@ -45,10 +45,9 @@ getImagesFromApi(){
 	.then(response => { return response.json()})
 	.then(images => {imgAggregator = imgAggregator.concat(images.results); this.setState({ imgArray: imgAggregator,})});
 
-	// console.log('page', page);
-	// console.log('aggr img', imgAggregator);
-	// console.log('state img', this.state.imgArray);
-
+	console.log('page', page);
+	console.log('aggr img', imgAggregator);
+	console.log('state img', this.state.imgArray);
 
 }
 
@@ -56,7 +55,7 @@ getImagesFromApi(){
 handleScroll = () => {
 
 let sum = window.innerHeight + window.scrollY ;
-let body = document.body.offsetHeight-100;
+let body = document.body.offsetHeight;
 
 if(sum >= body){
 		page++;
@@ -102,8 +101,9 @@ onInputHitEnter = (data) => {
 		window.scrollTo(0,0);
 		this.getImagesFromApi();
 	}
-
 }
+
+
 
 //COMPOPNENT DID MOUNT
 componentDidMount(){
@@ -118,7 +118,7 @@ render(){
 			<div className="app-container" >
 				<Loader  renderStatus={this.state.render}/>
 				<Header onInputChange={this.onInputChange} onCLickRunQuery={this.onCLickRunQuery} onInputHitEnter={this.onInputHitEnter} />
-				<ImageList renderStatus={this.state.render} onImgLoad={this.onImgLoad} imgArray={this.state.imgArray}/>
+				<ImageList renderStatus={this.state.render} onImgLoad={this.onImgLoad} imgArray={this.state.imgArray} maximizeImage={this.maximizeImage}/>
 			</div>
 		)
 	}

@@ -45,6 +45,9 @@ getImagesFromApi(){
 	.then(response => { return response.json()})
 	.then(images => {imgAggregator = imgAggregator.concat(images.results); this.setState({ imgArray: imgAggregator,})});
 
+	userQueryInput
+
+
 	console.log('page', page);
 	console.log('aggr img', imgAggregator);
 	console.log('state img', this.state.imgArray);
@@ -100,6 +103,7 @@ onInputHitEnter = (data) => {
 		page = 1;
 		window.scrollTo(0,0);
 		this.getImagesFromApi();
+		data.target.value = "";
 	}
 }
 
@@ -114,7 +118,7 @@ componentDidMount(){
 
 // RENDER THE COMPONENTS and pass parameters
 render(){
-		return(		
+		return(
 			<div className="app-container" >
 				<Loader  renderStatus={this.state.render}/>
 				<Header onInputChange={this.onInputChange} onCLickRunQuery={this.onCLickRunQuery} onInputHitEnter={this.onInputHitEnter} />

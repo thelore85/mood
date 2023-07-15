@@ -23,6 +23,7 @@ const Image = ({ src, onImgLoad }) => {
 			</div>
 		</div>
 
+
 		<Modal  show={show} onHide={handleClose} dialogClassName="modal-250w" aria-labelledby="example-custom-modal-styling-title" >
 			<Modal.Body>
 				<img className="image-item img-fluid" src={src.regular} onClick={handleClose}/>
